@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<!-- 接口映射 -->
+
+<mapper namespace="com.rate.mapper.BlackDriverMapper">
+	<!-- 打开当前mapper下的二级缓存
+		eviction:以什么样的策略回收缓存数据
+			LRU:最近最少使用(默认)
+			WEAK:弱引用  
+			SORT:软引用
+			FIFO:First In First Out
+		flushIntervel:缓存刷新周期,没有指定,默认是在每次查询的时候刷新
+		readOnly:
+		size:缓存中最多能存储的对象个数,没有指定,默认是1024个,超出了按照回收策略进行回收
+		type:分布式缓存
+			-->
+	 <!-- <cache 
+	 	eviction="LRU"
+		flushInterval="60000"
+		readOnly="true"
+		size="1024"
+	 />  -->
+	<!-- 根据id查找一个对象 -->
+		 <select id="findBlackById" parameterType="int" resultType="com.rate.bean.BlackDriver">
+			select * from driverBlack where dr_id=#{id}
+		</select> 
+	<!-- 根据id删除一个对象 -->
+		<select id="deleteBlackById" parameterType="int">
+			delete from driverBlack where dr_id = #{id}
+		</select> 
+	<!-- 插入一个对象 -->
+		<insert id="addBlack" parameterType="com.rate.bean.BlackDriver" >
+			insert into driverBlack(dr_id,dr_name,dr_driverage,dr_drive,dr_amount,dr_phone,dr_evaluate) values(#{dr_id},#{dr_name},#{dr_driverage},#{dr_drive},#{dr_amount},#{dr_phone},#{dr_evaluate})
+		</insert>
+	<!-- 修改一个对象 -->
+		<!-- 修改对象,传过来几项数据就修改几项 -->
+		<!-- <update id="updateEmp"
+			parameterType="emp">
+			update emp
+			<set>
+					<if test="name!=null">
+					name=#{name},
+				</if>
+				<if test="sex!=null">
+					sex=#{sex},
+				</if>
+				<if test="job!=null">
+					job=#{job},
+				</if>
+				<if test="salary!=0">
+					salary= #{salary},
+				</if>
+				<if test="hiredate!=null">
+					hiredate=#{hiredate},
+				</if>
+				<if test="deptno!=0">
+					deptno=#{deptno},
+				</if>
+				写id可以防止一个都不传的时候报错
+				<if test="id!=0">
+					id=#{id}
+				</if>
+			</set>
+			where id=#{id}
+		</update> -->
+	<!-- 查找所有对象 -->
+		<select id="findAllBlackDriver" resultType="com.rate.bean.BlackDriver">
+			select * from  driverBlack
+		</select>
+</mapper>

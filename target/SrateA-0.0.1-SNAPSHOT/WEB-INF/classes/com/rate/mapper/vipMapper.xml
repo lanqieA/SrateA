@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.rate.mapper.VipMapper">
+	<!-- 查找所有对象 -->
+	<select id="findAllVip" resultType="com.rate.bean.Vip">
+		select * from vip
+	</select>
+	
+	<!-- 添加vip对象 -->
+	<select id="addVip" parameterType="com.rate.bean.Vip">
+		insert into vip(id,username,password,name,idCard,phone,email,city) values(#{id},#{username},#{password},#{name},#{idCard},#{phone},#{email},#{city})
+	</select>
+	
+	<!-- 根据id删除数据 -->
+	<delete id="deleteVipById" parameterType="int">
+		delete from vip where id= #{id}
+	</delete>
+	
+	<!-- 根据id修改对象 -->
+	<update id="updateVip" parameterType="com.rate.bean.Vip">
+		update vip
+			<set>
+				<if test="username!=null">
+					username=#{username},
+				</if>
+				<if test="password!=null">
+					password=#{password},
+				</if>
+				<if test="name!=null">
+					name=#{name},
+				</if>
+				<if test="idCard!=null">
+					idCard= #{idCard},
+				</if>
+				<if test="phone!=0">
+					phone=#{phone},
+				</if>
+				<if test="email!=null">
+					email=#{email},
+				</if>
+				<if test="city!=null">
+					city=#{city},
+				</if>
+				<!-- 写id可以防止一个都不传的时候报错 -->
+				<if test="id!=0">
+					id=#{id}
+				</if>
+			</set>
+			where id=#{id}
+	</update>
+	
+	<!-- 根据id查找对象 -->
+	<select id="findVipById" parameterType="int" resultType="com.rate.bean.Vip">
+		select * from vip where id=#{id}
+	</select>
+	
+	<!-- 根据username查找对象 -->
+	<select id="findVipByUsername" parameterType="string" resultType="com.rate.bean.Vip">
+		select * from vip where username=#{username}
+	</select>
+	
+	<!-- 根据username和password查找对象 -->
+	<select id="findVipByNameAndPwd" parameterType="com.rate.bean.Vip" resultType="com.rate.bean.Vip">
+		select * from vip where username=#{username} and password =#{password}
+	</select>
+</mapper>

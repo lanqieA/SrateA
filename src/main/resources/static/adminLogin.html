@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<link rel="icon" href="images/logo.ico" />
+<title>登录页面</title>
+<link rel="stylesheet" href="css/login.css" />
+<style>
+	body{
+				background-image: url(images/1.jpg);
+				background-size: cover;
+			}
+	.checkRole input{
+		width:20px;
+		height:12px;
+	}
+</style>
+</head>
+<body>
+<div class="login-container">
+    <h1>登录</h1>
+    <div class="checkRole">
+	    <a href="login.html">会员登录</a>
+	    <a href="driverLogin.html">车主登录</a>
+	    <input type="radio" name="check" value="admin"/>管理员登录
+		</div>
+    <form action="" method="post" id="loginForm">
+        <div>
+			<input type="text" name="username" class="username" placeholder="输入昵称" autocomplete="off" />
+			<span id="noVip"></span>
+        </div>
+        <div>
+            <input type="password" name="password" class="password" placeholder="密码" oncontextmenu="return false" onpaste="return false" />
+        </div>
+        <button id="submitdl" type="button">登 陆</button>
+        <button type="reset" style="background:#F0AD4E;">重 置</button>
+    </form>
+    <a href="register.html">
+    	<button type="button" class="register-tis">还没有账号？</button>
+    </a>
+    <span id="nameOrPwdError"></span>
+</div>
+<script src="js/jquery-1.4.3.js"></script> 
+<!-- <script src="js/jquery.min.js"></script>  -->
+<script src="js/common.js"></script> 
+<!--背景图片自动更换--> 
+<script src="js/supersized.3.2.7.min.js"></script> 
+<script src="js/supersized-init.js"></script> 
+<!--表单验证--> 
+<script src="js/jquery.validate.min.js?var1.14.0"></script>
+<script >
+//判断用户名和密码
+$("#submitdl").click(function(){
+	//获取角色
+	var role = $("input:checked").val();
+	console.log(role);
+	//获取账号和密码
+	var formData = $("form").serialize();
+	//以下为判断是什么角色来登录
+	//拿到checkRole中的值
+	if(role="admin"){
+		$.ajax({
+			type:"GET",
+			url:"admin-login",
+			data:formData,
+			success:function(data){
+			if(data){
+				window.location="admin";
+			}
+		}
+	});
+	}
+});
+</script>
+</body>
+</html>

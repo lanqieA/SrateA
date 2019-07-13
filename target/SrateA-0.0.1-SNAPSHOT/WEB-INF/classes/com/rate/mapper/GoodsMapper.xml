@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.rate.mapper.GoodsMapper">
+	<!-- 查找所有对象 -->
+	<select id="findAllGoods" resultType="com.rate.bean.Goods">
+		SELECT * FROM goods
+	</select>
+	<!-- 查找所有对象 -->
+	<select id="findNoOrderGoods" resultType="com.rate.bean.Goods">
+		SELECT * FROM goods where go_state = '待接单'
+	</select>
+	<!-- 根据货物编号删除一条数据 -->
+	<delete id="deleteGoodsById" parameterType="int">
+		DELETE FROM goods WHERE go_id=#{go_id}
+	</delete>
+	<!-- 根据货物编号查找一条数据 -->
+	<select id="findGoodsById" resultType="com.rate.bean.Goods" parameterType="int">
+		SELECT * FROM goods WHERE go_id=#{go_id}
+	</select>
+	<!-- 插入一条数据 -->
+	<insert id="addGoods" parameterType="com.rate.bean.Goods">
+		INSERT INTO goods(go_id,u_id,u_name,go_info,go_price,start_city,start_info,end_city,end_info,car_type,car_len,go_state) VALUES(#{go_id},#{u_id},#{u_name},#{go_info},#{go_price},#{start_city},#{start_info},#{end_city},#{end_info},#{car_type},#{car_len},#{go_state})
+	</insert>
+	<!-- 接单后将状态转换为已接单 -->
+	<update id="transStatusOrder" parameterType="int">
+		update goods set go_state='已接单' where go_id = #{go_id}
+	</update>
+	<!-- 接单后将状态转换为已接单 -->
+	<update id="transStatusNoOrder" parameterType="int">
+		update goods set go_state='待接单' where go_id = #{go_id}
+	</update>
+	<!-- 根据用户id查找自己的货源 -->
+	<select id="findGoodsByVip" resultType="com.rate.bean.Goods" parameterType="int">
+		SELECT * FROM goods WHERE u_id=#{u_id}
+	</select>
+</mapper>

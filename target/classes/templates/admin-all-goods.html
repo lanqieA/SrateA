@@ -1,0 +1,220 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<link rel="stylesheet" href="css/adminbase.css" />
+<link rel="stylesheet" type="text/css" href="css/admindialog.css" />
+<link rel="stylesheet" href="css/admin.css" />
+    <style>
+        .layui-layer-title{background:url(images/righttitlebig.png) repeat-x;font-weight:bold;color:#46647e; border:1px solid #c1d3de;height: 33px;line-height: 33px;}
+        .content{
+        	width: 100%; 
+        	height: 100%;
+        	background-color: darkseagreen;
+        	background-image: url(images/timg.jpg) ;
+        	display: inline-block;
+        }
+       
+        .c_div{
+        	margin:10% 5% 10% 5%;
+        }
+       
+        .c_table{
+			border-spacing: none;
+			border-collapse: collapse;
+			width:100%;
+        	height:80%;
+        	font-size:20px;
+        	text-align: center;
+        	color: brown;
+        	font-weight: bold;
+        	background-color: lightcyan;
+        }
+        .c_table td{
+        	border: 1px black solid;
+        	text-align: center;
+        	font-weight: bold;
+        }
+    </style>
+<title>OA管理系统</title>
+</head>
+<body>
+<div id="container">
+	<div id="hd">
+    	<div class="hd-wrap ue-clear">
+        	<div class="top-light"></div>
+            <h1 class="logo"></h1>
+            <div class="login-info ue-clear">
+                <div class="welcome ue-clear"><span>欢迎您,</span><a href="javascript:void(0)" class="user-name">Admin</a></div>
+                <div class="login-msg ue-clear">
+                    <a href="javascript:void(0)" class="msg-txt">消息</a>
+                    <a href="javascript:void(0)" class="msg-num">10</a>
+                </div>
+            </div>
+            <div class="toolbar ue-clear">
+                <a href="admin" class="home-btn" target="right">首页</a>
+                <a href="#" class="home-btn1" target="right" onclick="openlayer()">修改密码</a>
+                <a href="#" class="quit-btn exit home-btn">退出</a>
+            </div>
+        </div>
+    </div>
+    <div id="bd">
+    	<div class="wrap ue-clear">
+        	<div class="sidebar" style="display: inline-block;">
+            	<h2 class="sidebar-header"><p>功能导航</p></h2>
+                <ul class="nav">
+                	<li class="office current"><div class="nav-header"><a href="admin" target="right" class="ue-clear"><span>首页</span><i class="icon"></i></a></div></li>
+                    <li class="land"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>货源管理</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                      		<li><a href="allGoods" target="right">所有货源</a></li>
+                            <li><a href="#" target="right">今日货源</a></li>
+                            <li><a href="#" target="right">一周货源</a></li>
+                            <li><a href="#" target="right">将到期货源</a></li>
+                            <li><a href="#" target="right">过期货源</a></li>
+                        </ul>
+                    </li>
+                    <li class="train"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>车主管理</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                        	<li><a href="allDriver" target="right">所有车主</a></li>
+                            <li><a href="mytrain.html" target="right">近期注册</a></li>
+                            <li><a href="train.html" target="right">将到期车主</a></li>
+                            <li><a href="allBlackDriver" target="right">车主黑名单</a></li>
+                        </ul>
+                    </li>
+                    <li class="email"><div class="nav-header"><a href="mesage.html" class="ue-clear"  target="right"><span>消息推送</span><i class="icon"></i></a></div></li>
+                    <li class="list_m"><div class="nav-header"><a href="mailList.html" class="ue-clear" target="right"><span>通讯录管理</span><i class="icon"></i></a></div></li>
+                    <li class="news_m"><div class="nav-header"><a href="notice.html" class="ue-clear"  target="right"><span>通知通告</span><i class="icon"></i></a></div></li>
+                    <li class="dossier"><div class="nav-header"><a href="findAllDeal?num=1" class="ue-clear" ><span>交易管理</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                            <li><a href="dossier_my.html" target="right">一周交易</a></li>
+                            <li><a href="dossier_puplic.html" target="right">一月交易</a></li>
+                        </ul>
+                    </li>
+                    <li class="part"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>财务查看</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                            <li><a href="person.html" target="right">货源收入</a></li>
+                            <li><a href="part.html" target="right">车主收入</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="content" >
+            	<div class="c_div">
+            		<table class="c_table">
+	  				<!-- 此处用thymleaf技术,避免使用过于繁杂的拼接 -->
+	  				<tr>
+	  					<td>货物编号</td>
+	  					<td>货主编号</td>
+	  					<td>货主姓名</td>
+	  					<td>货物描述</td>
+	  					<td>意向价格</td>
+	  					<td>起点信息</td>
+	  					<td>起点详细地址</td>
+	  					<td>终点信息</td>
+	  					<td>详细终点信息</td>
+	  					<td>车辆类型</td>
+	  					<td>车辆长度</td>
+	  					<td>发布时间</td>
+	  					<td>状态</td>
+	  				</tr>
+	  				<!-- 迭代信息 -->
+	  				<tr th:each="good:${goods}">
+	  					<td th:text="${good.go_id}"></td>
+	  					<td th:text="${good.u_id}"></td>
+	  					<td th:text="${good.u_name}"></td>
+	  					<td th:text="${good.go_info}"></td>
+	  					<td th:text="${good.go_price}"></td>
+	  					<td th:text="${good.start_city}"></td>
+	  					<td th:text="${good.start_info}"></td>
+	  					<td th:text="${good.end_city}"></td>
+	  					<td th:text="${good.end_info}"></td>
+	  					<td th:text="${good.car_type}"></td>
+	  					<td th:text="${good.car_len}"></td>
+	  					<td th:text="${good.sub_time}"></td>
+	  					<td th:text="${good.go_state}"></td>
+	  				</tr>
+  				</table>
+            	</div>
+  			</div>
+    </div>
+</div>
+<div class="exitDialog">
+	<div class="dialog-content">
+    	<div class="ui-dialog-icon"></div>
+        <div class="ui-dialog-text">
+        	<p class="dialog-content">你确定要退出系统？</p>
+            <p class="tips">如果是请点击“确定”，否则点“取消”</p>
+            
+            <div class="buttons">
+                <input type="button" class="button long2 ok" value="确定" />
+                <input type="button" class="button long2 normal" value="取消" />
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script> 
+<script type="text/javascript" src="js/core.js"></script>
+<script type="text/javascript" src="js/jquery.dialog.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
+<script src="js/layer_v2.1/layer/layer.js"></script>
+<!-- <script src="js/jquery-1.4.3.js"></script> -->
+<script src="js/jquery.serializeJson-min.js"></script>
+<script type="text/javascript">
+/* 点击货主详情获取货主详情 */
+	$(".v_button").click(function(){
+		var id =$(this).parent().parent().children(":eq(2)").text();
+		console.log(id);
+		$.ajax({
+			type:"GET",
+			url:"findVById/"+id,
+			success:function(data){
+				console.log(data);
+				$(".cs_div").text(data);
+			}
+		});
+	});
+	/* 点击货物详情获取货主详情 */
+	$(".g_button").click(function(){
+		var id =$(this).parent().parent().children(":eq(1)").text();
+		console.log(id);
+		$.ajax({
+			type:"GET",
+			url:"findGById/"+id,
+			success:function(data){
+				console.log(data);
+				$(".cs_div").text(data);
+			}
+		});
+	});
+	/* 点击车主详情获取货主详情 */
+	$(".d_button").click(function(){
+		var id =$(this).parent().parent().children(":eq(3)").text();
+		console.log(id);
+		$.ajax({
+			type:"GET",
+			url:"findDById/"+id,
+			success:function(data){
+				console.log(data);
+				$(".cs_div").text(data);
+			}
+		});
+	});
+	/* 修改密码框 */
+    function openlayer(id){
+        layer.open({
+            type: 2,
+            title: '修改密码',
+            shadeClose: false,
+            shade: 0.5,
+            skin: 'layui-layer-rim',
+//            maxmin: true,
+            closeBtn:2,
+            area: ['35%', '40%'],
+            content: 'password.html'
+            //iframe的url
+        });
+    }
+</script>
+</html>
