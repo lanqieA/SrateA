@@ -24,7 +24,11 @@ import com.rate.util.IdRandomUtil;
 public class VipController {
 	@Autowired
 	private VipService vipService;
+<<<<<<< HEAD
 	//鏌ヨ鎵�鏈塿ip
+=======
+	//查询所有vip
+>>>>>>> branch 'master' of https://github.com/lanqieA/SrateA.git
 	@RequestMapping("/findAllVip")
 	@ResponseBody
 	public List<Vip> findAllVip() {
@@ -33,7 +37,11 @@ public class VipController {
 		System.out.println(vips);
 		return vips;
 	}
+<<<<<<< HEAD
 	//娣诲姞vip
+=======
+	//添加vip
+>>>>>>> branch 'master' of https://github.com/lanqieA/SrateA.git
 	@RequestMapping("/addVip")
 	@ResponseBody
 	public boolean addVip(Vip vip) {		
@@ -42,7 +50,11 @@ public class VipController {
 		vipService.addVip(vip);		
 		return true;
 	}
+<<<<<<< HEAD
 	//鏍规嵁id鍒犻櫎vip
+=======
+	//根据id删除vip
+>>>>>>> branch 'master' of https://github.com/lanqieA/SrateA.git
 	@RequestMapping("/deleteVipById")
 	@ResponseBody
 	public boolean deleteVipById(int id) {
@@ -50,7 +62,11 @@ public class VipController {
 		vipService.deleteVipById(id);
 		return true;
 	}
+<<<<<<< HEAD
 	//鏍规嵁id淇敼淇℃伅
+=======
+	//根据id修改信息
+>>>>>>> branch 'master' of https://github.com/lanqieA/SrateA.git
 	
 	@RequestMapping("/updateVip")
 	@ResponseBody
@@ -59,7 +75,11 @@ public class VipController {
 		vipService.updateVip(vip);
 		return true;
 	}
+<<<<<<< HEAD
 	//鏍规嵁id鏌ユ壘vip
+=======
+	//根据id查找vip
+>>>>>>> branch 'master' of https://github.com/lanqieA/SrateA.git
 	@RequestMapping("/findVipById")
 	@ResponseBody
 	public Vip findVipById(int id,HttpSession session){
@@ -67,7 +87,11 @@ public class VipController {
 		session.setAttribute("vip", vip);
 		return vip;
 	}
+<<<<<<< HEAD
 	//鏍规嵁username鏌ユ壘vip
+=======
+	//根据username查找vip
+>>>>>>> branch 'master' of https://github.com/lanqieA/SrateA.git
 	@RequestMapping("/findVipByUsername")
 	@ResponseBody
 	public boolean findVipByUsername(String username){
@@ -77,7 +101,11 @@ public class VipController {
 		}
 		return true;
 	}
+<<<<<<< HEAD
 	//vip鐧诲綍鐨勬柟娉�
+=======
+	//vip登录的方法
+>>>>>>> branch 'master' of https://github.com/lanqieA/SrateA.git
 	@RequestMapping("/findVipByUsernameAndPwd")
 	@ResponseBody
 	public Vip findVipByUsernameAndPwd(Vip vip,HttpSession session){
@@ -86,7 +114,11 @@ public class VipController {
 			return null;
 		}
 		System.out.println(v);
+<<<<<<< HEAD
 		//灏嗘壘鍒扮殑vip瀛樺偍鍒皊ession
+=======
+		//将找到的vip存储到session
+>>>>>>> branch 'master' of https://github.com/lanqieA/SrateA.git
 		session.setAttribute("vip", v);
 		return v;
 	}
