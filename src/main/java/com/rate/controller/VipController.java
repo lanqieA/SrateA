@@ -24,14 +24,16 @@ import com.rate.util.IdRandomUtil;
 public class VipController {
 	@Autowired
 	private VipService vipService;
-	//²éÑ¯ËùÓĞvip
+	//æŸ¥è¯¢æ‰€æœ‰vip
 	@RequestMapping("/findAllVip")
 	@ResponseBody
 	public List<Vip> findAllVip() {
 		List<Vip> vips = vipService.findAllVip();
+		Map<String, Vip> vips = vipService.findAllVip();
+		System.out.println(vips);
 		return vips;
 	}
-	//Ìí¼Óvip
+	//æ·»åŠ vip
 	@RequestMapping("/addVip")
 	@ResponseBody
 	public boolean addVip(Vip vip) {		
@@ -40,7 +42,7 @@ public class VipController {
 		vipService.addVip(vip);		
 		return true;
 	}
-	//¸ù¾İidÉ¾³ıvip
+	//æ ¹æ®idåˆ é™¤vip
 	@RequestMapping("/deleteVipById")
 	@ResponseBody
 	public boolean deleteVipById(int id) {
@@ -48,7 +50,7 @@ public class VipController {
 		vipService.deleteVipById(id);
 		return true;
 	}
-	//¸ù¾İidĞŞ¸ÄĞÅÏ¢
+	//æ ¹æ®idä¿®æ”¹ä¿¡æ¯
 	
 	@RequestMapping("/updateVip")
 	@ResponseBody
@@ -57,7 +59,7 @@ public class VipController {
 		vipService.updateVip(vip);
 		return true;
 	}
-	//¸ù¾İid²éÕÒvip
+	//æ ¹æ®idæŸ¥æ‰¾vip
 	@RequestMapping("/findVipById")
 	@ResponseBody
 	public Vip findVipById(int id,HttpSession session){
@@ -65,7 +67,7 @@ public class VipController {
 		session.setAttribute("vip", vip);
 		return vip;
 	}
-	//¸ù¾İusername²éÕÒvip
+	//æ ¹æ®usernameæŸ¥æ‰¾vip
 	@RequestMapping("/findVipByUsername")
 	@ResponseBody
 	public boolean findVipByUsername(String username){
@@ -75,7 +77,7 @@ public class VipController {
 		}
 		return true;
 	}
-	//vipµÇÂ¼µÄ·½·¨
+	//vipç™»å½•çš„æ–¹æ³•
 	@RequestMapping("/findVipByUsernameAndPwd")
 	@ResponseBody
 	public Vip findVipByUsernameAndPwd(Vip vip,HttpSession session){
@@ -84,7 +86,7 @@ public class VipController {
 			return null;
 		}
 		System.out.println(v);
-		//½«ÕÒµ½µÄvip´æ´¢µ½session
+		//å°†æ‰¾åˆ°çš„vipå­˜å‚¨åˆ°session
 		session.setAttribute("vip", v);
 		return v;
 	}
