@@ -1,6 +1,7 @@
 package com.rate.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import com.rate.bean.Vip;
 @Service
 public interface VipService {
 	//查询所有用户信息
-	public List<Vip> findAllVip();
+	public Map<String, Vip> findAllVip();
 	//添加vip
 	public void addVip(Vip vip);
 	//根据id删除id

@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rate.bean.Deal;
 import com.rate.mapper.DealMapper;
 import com.rate.service.DealService;
 @Service
+@Transactional
 public class DealServiceImpl implements DealService{
 	@Autowired
 	private DealMapper dealMapper;

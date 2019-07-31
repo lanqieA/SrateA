@@ -13,10 +13,10 @@ public class TestInitClass implements CommandLineRunner{
 	@Override
 	public void run(String... arg0) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("Â²Ã¢ÃŠÃ”Â³ÃµÃŠÂ¼Â»Â¯Â·Ã¾ÃÃ±1,commandLineRenner");
+		System.out.println("²âÊÔ1,commandLineRenner");
 		int createIdCode = IdRandomUtil.createIdCode();
 		System.out.println(createIdCode);
-		System.out.println("æµ‹è¯•æ·»åŠ ");
+		System.out.println("²âÊÔÌí¼Ó");
 	}
 
 }

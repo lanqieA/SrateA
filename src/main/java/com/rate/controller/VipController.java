@@ -1,7 +1,6 @@
 package com.rate.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.mail.Session;
 import javax.servlet.http.HttpSession;
@@ -25,15 +24,16 @@ import com.rate.util.IdRandomUtil;
 public class VipController {
 	@Autowired
 	private VipService vipService;
-	//查询所有vip
+	//閺屻儴顕楅幍锟介張濉縤p
 	@RequestMapping("/findAllVip")
 	@ResponseBody
-	public Map<String, Vip> findAllVip() {
+	public List<Vip> findAllVip() {
+		List<Vip> vips = vipService.findAllVip();
 		Map<String, Vip> vips = vipService.findAllVip();
 		System.out.println(vips);
 		return vips;
 	}
-	//添加vip
+	//濞ｈ濮瀡ip
 	@RequestMapping("/addVip")
 	@ResponseBody
 	public boolean addVip(Vip vip) {		
@@ -42,7 +42,7 @@ public class VipController {
 		vipService.addVip(vip);		
 		return true;
 	}
-	//根据id删除vip
+	//閺嶈宓乮d閸掔娀娅巚ip
 	@RequestMapping("/deleteVipById")
 	@ResponseBody
 	public boolean deleteVipById(int id) {
@@ -50,7 +50,7 @@ public class VipController {
 		vipService.deleteVipById(id);
 		return true;
 	}
-	//根据id修改信息
+	//閺嶈宓乮d娣囶喗鏁兼穱鈩冧紖
 	
 	@RequestMapping("/updateVip")
 	@ResponseBody
@@ -59,7 +59,7 @@ public class VipController {
 		vipService.updateVip(vip);
 		return true;
 	}
-	//根据id查找vip
+	//閺嶈宓乮d閺屻儲澹榲ip
 	@RequestMapping("/findVipById")
 	@ResponseBody
 	public Vip findVipById(int id,HttpSession session){
@@ -67,7 +67,7 @@ public class VipController {
 		session.setAttribute("vip", vip);
 		return vip;
 	}
-	//根据username查找vip
+	//閺嶈宓乽sername閺屻儲澹榲ip
 	@RequestMapping("/findVipByUsername")
 	@ResponseBody
 	public boolean findVipByUsername(String username){
@@ -77,7 +77,7 @@ public class VipController {
 		}
 		return true;
 	}
-	//vip登录的方法
+	//vip閻ц缍嶉惃鍕煙濞夛拷
 	@RequestMapping("/findVipByUsernameAndPwd")
 	@ResponseBody
 	public Vip findVipByUsernameAndPwd(Vip vip,HttpSession session){
@@ -86,9 +86,8 @@ public class VipController {
 			return null;
 		}
 		System.out.println(v);
-		//将找到的vip存储到session
+		//鐏忓棙澹橀崚鎵畱vip鐎涙ê鍋嶉崚鐨奺ssion
 		session.setAttribute("vip", v);
 		return v;
 	}
-	
 }

@@ -1,4 +1,4 @@
-package com.rate.interceptor;
+/*package com.rate.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,4 +56,4 @@ public class RateInterCeptor implements HandlerInterceptor{
 		System.out.println("aa");
 		return true;
 	}
-}
+}*/

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rate.bean.BlackDriver;
 import com.rate.bean.Driver;
@@ -14,6 +15,7 @@ import com.rate.service.BlackDriverService;
 import com.rate.service.DriverService;
 
 @Service
+@Transactional
 public class BlackDriverServiceImpl implements BlackDriverService{
 	@Autowired
 	private BlackDriverMapper blackDriverMapper;

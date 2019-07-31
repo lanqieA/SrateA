@@ -87,10 +87,10 @@ public class DriverController {
 		session.removeAttribute("driver");
 		return "redirect:driverLogin.html";
 	}
-	@RequestMapping("admin-login")
+	@RequestMapping(value="admin-login",method=RequestMethod.POST)
 	@ResponseBody
 	//管理员登录的方法
-	public boolean adminLogin(String username,String password,HttpSession session){
+	public boolean adminLogin(@RequestParam(value="username")String username,@RequestParam(value="password")String password,HttpSession session){
 		if (username.equals("admin")&&password.equals("admin")) {
 			session.setAttribute("admin", "admin");
 			return true;

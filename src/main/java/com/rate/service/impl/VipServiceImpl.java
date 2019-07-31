@@ -1,23 +1,23 @@
 package com.rate.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rate.bean.Vip;
 import com.rate.mapper.VipMapper;
 import com.rate.service.VipService;
 
 @Service
+@Transactional
 public class VipServiceImpl implements VipService{
 	@Autowired
 	private VipMapper vipMapper;
 	//查询所有信息
-	@Override
-	public List<Vip> findAllVip() {		
-		return vipMapper.findAllVip();
-	}
+	
 	//添加vip
 	@Override
 	public void addVip(Vip vip) {
@@ -49,5 +49,12 @@ public class VipServiceImpl implements VipService{
 	public Vip findVipByNameAndPwd(Vip vip) {
 		Vip nvip = vipMapper.findVipByNameAndPwd(vip);
 		return nvip;
-	}		
+	}
+	@Override
+	public Map<String, Vip> findAllVip() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+		
 }

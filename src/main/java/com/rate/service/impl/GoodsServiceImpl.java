@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rate.bean.Goods;
 import com.rate.mapper.GoodsMapper;
 import com.rate.service.GoodsService;
 @Service
+@Transactional
 public class GoodsServiceImpl implements GoodsService{
 	@Autowired
 	private GoodsMapper goodsMapper;

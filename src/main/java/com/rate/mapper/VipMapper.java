@@ -1,12 +1,16 @@
 package com.rate.mapper;
 
 import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.MapKey;
 
 import com.rate.bean.Vip;
 
 public interface VipMapper {
 	//查询所有vip
-	public List<Vip> findAllVip();
+	@MapKey("id")
+	public Map<String, Vip> findAllVip();
 	//添加vip
 	public void addVip(Vip vip);
 	//根据id删除vip

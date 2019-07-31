@@ -1,4 +1,4 @@
-package com.rate.interceptor;
+/*package com.rate.interceptor;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -10,4 +10,4 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter{
 		registry.addInterceptor(new RateInterCeptor()).addPathPatterns("/**");
 		super.addInterceptors(registry);
 	}
-}
+}*/
