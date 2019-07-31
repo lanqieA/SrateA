@@ -29,7 +29,7 @@ public class VipController {
 	@RequestMapping("/findAllVip")
 	@ResponseBody
 	public List<Vip> findAllVip() {
-		
+		list
 		List<Vip> vips = vipService.findAllVip();
 		Map<String, Vip> vips = vipService.findAllVip();
 		System.out.println(vips);
