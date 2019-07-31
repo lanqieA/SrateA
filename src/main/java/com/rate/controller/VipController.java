@@ -1,6 +1,7 @@
 package com.rate.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.Session;
 import javax.servlet.http.HttpSession;
@@ -27,8 +28,9 @@ public class VipController {
 	//查询所有vip
 	@RequestMapping("/findAllVip")
 	@ResponseBody
-	public List<Vip> findAllVip() {
-		List<Vip> vips = vipService.findAllVip();
+	public Map<String, Vip> findAllVip() {
+		Map<String, Vip> vips = vipService.findAllVip();
+		System.out.println(vips);
 		return vips;
 	}
 	//添加vip
@@ -88,4 +90,5 @@ public class VipController {
 		session.setAttribute("vip", v);
 		return v;
 	}
+	
 }
