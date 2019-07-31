@@ -35,10 +35,7 @@ public class VipController {
 		System.out.println(vips);
 		return vips;
 	}
-
-
 	//添加vip
-
 
 	@RequestMapping("/addVip")
 	@ResponseBody
@@ -50,7 +47,6 @@ public class VipController {
 	}
 
 	//根据id删除vip
-
 	@RequestMapping("/deleteVipById")
 	@ResponseBody
 	public boolean deleteVipById(int id) {
@@ -58,9 +54,6 @@ public class VipController {
 		vipService.deleteVipById(id);
 		return true;
 	}
-
-
-	//根据id修改信息
 	
 	@RequestMapping("/updateVip")
 	@ResponseBody
@@ -69,8 +62,6 @@ public class VipController {
 		vipService.updateVip(vip);
 		return true;
 	}
-
-
 	//根据id查找vip
 	@RequestMapping("/findVipById")
 	@ResponseBody
@@ -79,8 +70,6 @@ public class VipController {
 		session.setAttribute("vip", vip);
 		return vip;
 	}
-
-
 	//根据username查找vip
 	@RequestMapping("/findVipByUsername")
 	@ResponseBody
@@ -104,7 +93,6 @@ public class VipController {
 		System.out.println(v);
 
 		//将找到的vip存储到session
-
 		session.setAttribute("vip", v);
 		return v;
 	}
