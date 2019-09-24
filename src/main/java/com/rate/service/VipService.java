@@ -10,7 +10,7 @@ import com.rate.bean.Vip;
 @Service
 public interface VipService {
 	//查询所有用户信息
-	public Map<String, Vip> findAllVip();
+	public Map<Integer, Vip> findAllVip();
 	//添加vip
 	public void addVip(Vip vip);
 	//根据id删除id

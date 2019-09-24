@@ -10,7 +10,7 @@ import com.rate.bean.Vip;
 public interface VipMapper {
 	//查询所有vip
 	@MapKey("id")
-	public Map<String, Vip> findAllVip();
+	public Map<Integer, Vip> findAllVip();
 	//添加vip
 	public void addVip(Vip vip);
 	//根据id删除vip

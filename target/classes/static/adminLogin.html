@@ -61,7 +61,7 @@ $("#submitdl").click(function(){
 	//拿到checkRole中的值
 	if(role="admin"){
 		$.ajax({
-			type:"GET",
+			type:"POST",
 			url:"admin-login",
 			data:formData,
 			success:function(data){

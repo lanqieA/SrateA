@@ -51,9 +51,9 @@ public class VipServiceImpl implements VipService{
 		return nvip;
 	}
 	@Override
-	public Map<String, Vip> findAllVip() {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<Integer, Vip> findAllVip() {
+		Map<Integer, Vip> allVip = vipMapper.findAllVip();
+		return allVip;
 	}
 	
 		

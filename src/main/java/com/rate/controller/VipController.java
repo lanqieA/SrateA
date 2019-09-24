@@ -1,8 +1,10 @@
 package com.rate.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +30,8 @@ public class VipController {
 	//查询所有vip
 	@RequestMapping("/findAllVip")
 	@ResponseBody
-	public List<Vip> findAllVip() {
-		list
-		List<Vip> vips = vipService.findAllVip();
-		Map<String, Vip> vips = vipService.findAllVip();
+	public Map<Integer , Vip> findAllVip() {
+		Map<Integer, Vip> vips = vipService.findAllVip();
 		System.out.println(vips);
 		return vips;
 	}
@@ -85,13 +85,13 @@ public class VipController {
 
 	@RequestMapping("/findVipByUsernameAndPwd")
 	@ResponseBody
-	public Vip findVipByUsernameAndPwd(Vip vip,HttpSession session){
+	public Vip findVipByUsernameAndPwd(Vip vip,HttpSession session,HttpServletRequest request){
 		Vip v = vipService.findVipByNameAndPwd(vip);
 		if (v==null) {
 			return null;
 		}
 		System.out.println(v);
-
+		
 		//将找到的vip存储到session
 		session.setAttribute("vip", v);
 		return v;

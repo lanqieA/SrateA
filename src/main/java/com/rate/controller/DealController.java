@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Null;
 import javax.websocket.server.PathParam;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Isolation;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
+import com.rate.advice.errorCode.ErrorCode;
 import com.rate.bean.Deal;
 import com.rate.bean.Driver;
 import com.rate.bean.Goods;
@@ -39,6 +42,8 @@ import com.rate.util.IdRandomUtil;
 
 @Controller
 public class DealController {
+	private Logger logger = LoggerFactory.getLogger(DealController.class);
+	
 	//对dealService进行依赖
 	@Autowired
 	private DealService dealService;
@@ -61,7 +66,8 @@ public class DealController {
 		//开启物理分页
 		PageHelper.startPage(num, 10);
 		List<Deal> deals = dealService.findAllDeal();
-		System.out.println(deals);
+		System.out.println(ErrorCode.NO_USER_EXCEPTION);
+		logger.info("所有的交易为：{}", deals);
 		model.addAttribute("deals", deals);	
 		session.setAttribute("pnum", num);
 		return "admin-all-deals";
@@ -144,7 +150,8 @@ public class DealController {
 		@RequestMapping(value="getMyDeal",method=RequestMethod.GET)
 		//司机点击接单后获得自己的接单
 		public String getMyDeal(HttpSession session,Model model){
-			List<Deal> deals = (List<Deal>) session.getAttribute("deals");
+			List<Deal> attribute = (List<Deal>) session.getAttribute("deals");
+			List<Deal> deals = attribute;
 			model.addAttribute("deals", deals);
 			return "freight-details";
 		}
