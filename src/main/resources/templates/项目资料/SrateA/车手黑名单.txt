@@ -1,0 +1,21 @@
+create table driverBlack(
+	dr_id number(6) primary key,
+	dr_name char(8),//司机名
+	dr_driverage varchar2(4),//驾龄
+	dr_drive varchar2(10),//运货类型
+	dr_amount number(4),//接单总数
+	dr_phone number(11),//联系方式
+	dr_evaluate number(4)//星级
+);
+
+create table driverBlack(
+	dr_id number(6) ,
+	dr_name char(8),
+	dr_driverage varchar2(4),
+	dr_drive varchar2(10),
+	dr_amount number(4),
+	dr_phone number(11),
+	dr_evaluate number(4)
+);
+
+insert into driverBlack values(1000,'张三','3年','重卡',0,13674123980,1);

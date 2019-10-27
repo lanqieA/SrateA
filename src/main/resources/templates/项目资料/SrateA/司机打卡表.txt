@@ -1,0 +1,11 @@
+--司机打卡用表
+--创建序列
+create sequence si_sequence start with 1000 increment by 1;
+--司机打卡表,司机每到一个城市,就添加一条数据
+create table sign(
+	s_id  number(6) primary key,--主键
+	g_id number(6),--货物id
+	n_city varchar2(60),--城市
+	s_time date--现在时间
+);
+insert into sign values(si_sequence.nextval,1000,'成都市',SYSDATE);

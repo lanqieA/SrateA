@@ -1,0 +1,12 @@
+--建立交易表的序列
+create sequence de_sequence start with 100000 increment by 1;
+--建立交易表
+create table deal(
+	de_id number(10) primary key,--交易编号
+	go_id number(6),--货物编号
+	v_id number(6),--货主id
+	d_id number(6)--车手id
+);
+insert into  deal values(
+	de_sequence.nextval,1000,1000,1000
+)

@@ -1,0 +1,15 @@
+create table goods(
+	go_id number(10) primary key not null, 
+	u_id number(10),--货主编号
+	u_name char(20),--货主姓名
+	go_info varchar(300),--货物描述
+	go_price number(8),--意向价格
+	start_city varchar(60),--起点信息
+	start_info varchar(300),--起点详细地址
+	end_city varchar(60),--终点信息
+	end_info varchar(300),--详细终点信息
+	car_type varchar(20),--车辆类型
+	car_len varchar(10),--车辆长度
+	sub_time date,--发布时间
+	go_state varchar(20)--状态
+);
