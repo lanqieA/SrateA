@@ -3,8 +3,8 @@
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.rate.mapper.VipMapper">
 	<!-- 查找所有对象 -->
-	<select id="findAllVip" resultType="com.rate.bean.Vip">
-		select * from vip
+	<select id="findAllVip" parameterType="java.util.HashMap"   resultType="java.util.HashMap">
+		select * from vip where id=#{id}
 	</select>
 	
 	<!-- 添加vip对象 -->

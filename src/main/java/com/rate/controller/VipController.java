@@ -1,7 +1,10 @@
 package com.rate.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +33,21 @@ public class VipController {
 	//查询所有vip
 	@RequestMapping("/findAllVip")
 	@ResponseBody
-	public Map<Integer , Vip> findAllVip() {
-		Map<Integer, Vip> vips = vipService.findAllVip();
+	public List<Map<String, Object>> findAllVip() {
+		HashMap<String, String> tHashMap = new HashMap<>();
+		tHashMap.put("id", "8");
+		List<Map<String, Object>> vips = vipService.findAllVip(tHashMap);
+		HashMap<String, String> hashMap = new HashMap<>();
+		for (Map<String, Object> map : vips) {
+			Set<Entry<String,Object>> entrySet = map.entrySet();
+			for (Entry<String, Object> entry : entrySet) {
+				hashMap.put(entry.getKey(), String.valueOf(entry.getValue()));
+				System.out.println(entry.getKey()+":"+entry.getValue());
+			}
+		}
 		System.out.println(vips);
+		System.out.println("---------------");
+		System.out.println(hashMap);
 		return vips;
 	}
 	//添加vip

@@ -1,5 +1,6 @@
 package com.rate.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ import com.rate.bean.Vip;
 @Service
 public interface VipService {
 	//查询所有用户信息
-	public Map<Integer, Vip> findAllVip();
+	public List<Map<String, Object>> findAllVip(HashMap<String, String> map);
 	//添加vip
 	public void addVip(Vip vip);
 	//根据id删除id

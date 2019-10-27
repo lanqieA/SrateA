@@ -1,5 +1,6 @@
 package com.rate.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,8 +10,8 @@ import com.rate.bean.Vip;
 
 public interface VipMapper {
 	//查询所有vip
-	@MapKey("id")
-	public Map<Integer, Vip> findAllVip();
+	//@MapKey("ID")
+	public List<Map<String, Object>> findAllVip(HashMap<String, String> map);
 	//添加vip
 	public void addVip(Vip vip);
 	//根据id删除vip

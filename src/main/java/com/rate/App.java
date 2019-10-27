@@ -9,7 +9,6 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 import com.rate.config.Config;
 
-
 @SpringBootApplication
 @EnableConfigurationProperties({Config.class})
 @MapperScan(basePackages = {"com.rate.mapper"})

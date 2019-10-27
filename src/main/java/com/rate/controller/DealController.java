@@ -11,6 +11,14 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Null;
 import javax.websocket.server.PathParam;
 
+import org.quartz.CronScheduleBuilder;
+import org.quartz.CronTrigger;
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.TriggerBuilder;
+import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +46,14 @@ import com.rate.service.GoodsService;
 import com.rate.service.VipService;
 import com.rate.util.IdRandomUtil;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+
 
 
 @Controller
+@Api(value="dealController",description="The Deal Controller Description")
 public class DealController {
 	private Logger logger = LoggerFactory.getLogger(DealController.class);
 	
@@ -61,6 +74,7 @@ public class DealController {
 	}
 	//查看所有的交易
 	@RequestMapping("/findAllDeal")
+	@ApiOperation(value="获取所有的交易",notes="")
 	public String findAllDeal(Model model,int num,HttpSession session){
 		System.out.println("==controller==");
 		//开启物理分页
@@ -68,9 +82,29 @@ public class DealController {
 		List<Deal> deals = dealService.findAllDeal();
 		System.out.println(ErrorCode.NO_USER_EXCEPTION);
 		logger.info("所有的交易为：{}", deals);
+		try {
+			testJob();
+		} catch (SchedulerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		model.addAttribute("deals", deals);	
 		session.setAttribute("pnum", num);
 		return "admin-all-deals";
+	}
+	private void testJob() throws SchedulerException{
+		//创建jobDetail对象
+				JobDetail jobDetail = JobBuilder.newJob(com.rate.job.HelloJob.class)
+						.withIdentity("cronJob").build();
+				//每天的9:40触发任务
+				CronTrigger cronTrigger = 
+						TriggerBuilder.newTrigger().withIdentity("cronTrigger")
+						.withSchedule(CronScheduleBuilder
+								.cronSchedule("0,10,20,30,40,50 * * * * ? ")).build();
+				//Schedule实例
+				Scheduler scheduler =  StdSchedulerFactory.getDefaultScheduler();
+				scheduler.scheduleJob(jobDetail, cronTrigger);
+				scheduler.start();
 	}
 	//分页要求来给你一个页数
 	@RequestMapping("pageDeals")
@@ -86,6 +120,8 @@ public class DealController {
 		return pnum;
 	}
 	//点击查看交易详情时返回数据,方法待返回
+	@ApiOperation(value="获取订单",notes="根据id获取对应的订单")
+	@ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long")
 	@RequestMapping(value="findVById/{id}",method=RequestMethod.GET)
 	@ResponseBody
 	public Vip findVById(@PathVariable("id")int id){

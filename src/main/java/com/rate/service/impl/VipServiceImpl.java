@@ -1,5 +1,6 @@
 package com.rate.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,8 +52,8 @@ public class VipServiceImpl implements VipService{
 		return nvip;
 	}
 	@Override
-	public Map<Integer, Vip> findAllVip() {
-		Map<Integer, Vip> allVip = vipMapper.findAllVip();
+	public List<Map<String, Object>> findAllVip(HashMap<String, String> map) {
+		List<Map<String, Object>> allVip = vipMapper.findAllVip(map);
 		return allVip;
 	}
 	
